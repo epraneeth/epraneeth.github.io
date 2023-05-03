@@ -1,0 +1,99 @@
+html {
+    font-size: larger;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+div {
+    /*border-color:darkorange;
+    border-style: solid;*/
+    align-self: center;
+    
+}
+
+
+.sbox {
+    padding: 12px;
+    font-size: larger;
+    overflow: hidden;
+    /*box-shadow:1px 2px 4px 1px lightgray;*/
+}
+
+.sbox a {
+    padding: 6px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.sbox a:hover{
+        text-decoration: underline;
+        text-decoration-color: crimson;
+        text-underline-offset: 0.3em;
+        text-decoration-thickness: 0.06em ;
+
+}
+
+.sbox a:active{
+    color:crimson;
+}
+
+.sbox>:first-child{
+    margin-right:20%;
+    font-size: larger;
+}
+.sbox>:not(:first-child){
+    font-size: medium;
+}
+
+.sbox .icon{
+    display: none;
+}
+ @media screen and (max-width:800px) {
+    .sbox a:not(:first-child){display: none;}
+    .sbox a.icon{
+        float: right;
+        display: block;
+       /* border-style:outset;
+        border-width: 2px;
+        border-color: crimson;
+        padding: 1%;*/
+        background-color: blueviolet;
+    }
+ }
+
+ @media screen and (max-width: 800px) {
+    .sbox.responsive {position: relative;}
+    .sbox.responsive .icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .sbox.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+  }
+
+
+
+
+
+
+
+
+.mainbody {
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 16px;
+}
+
+footer {
+    font-size: small;
+    text-align: center;
+    color: crimson;
+    font-weight: 900;
+}
