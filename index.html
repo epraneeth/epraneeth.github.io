@@ -3,24 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Praneeth is an AI engineer working on reliable language-model systems, retrieval, and agents." />
-    <title>Praneeth</title>
+    <meta name="description" content="Praneeth Earlagadda — AI engineering, retrieval, and agent evaluation. Experience, research directions, and engineering notes." />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Praneeth Earlagadda · AI engineering" />
+    <meta property="og:description" content="Reliable language-model systems: retrieval, grounding, and agent evaluation." />
+    <meta property="og:url" content="https://epraneeth.github.io/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@praneeth_earl" />
+    <title>Praneeth Earlagadda · AI engineering</title>
+    <link rel="canonical" href="https://epraneeth.github.io/" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      try { const theme = localStorage.getItem('theme'); if (theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark'; } catch (_) { if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark'; }
+    </script>
+    <script src="script.js" defer></script>
   </head>
   <body>
+    <a class="skip-link" href="#top">Skip to content</a>
     <main>
-      <nav><a href="#top">Praneeth</a><span>·</span><a href="#about">about</a><span>·</span><a href="#notes">notes</a><span>·</span><a href="https://github.com/epraneeth" target="_blank" rel="noreferrer">github</a><span>·</span><a href="https://x.com/praneeth_earl" target="_blank" rel="noreferrer">twitter</a><span>·</span><a href="https://www.linkedin.com/in/praneethe" target="_blank" rel="noreferrer">linkedin</a><button id="theme-toggle" type="button" aria-label="Switch to dark theme">dark</button></nav>
+      <nav aria-label="Main navigation">
+        <a href="#top">Praneeth</a>
+        <a href="#work">work</a>
+        <a href="#notes">notes</a>
+        <a href="#about">about</a>
+        <button id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" hidden>dark</button>
+      </nav>
       <article id="top">
+        <p class="eyebrow">AI engineering · retrieval &amp; agents</p>
         <h1>Hi, I’m Praneeth.</h1>
-        <p>I’m an AI engineer with experience working on production RAG systems. I care about the engineering that makes language-model systems reliable: retrieval, grounding, evaluation, and useful behaviour under real constraints.</p>
-        <p>I’m currently building a public body of work on agent systems and mobile agents—how models plan, use tools, recover from failure, and become genuinely useful.</p>
+        <p>I’m an AI engineer with experience working on production retrieval-augmented generation (RAG) systems. I care about how language-model systems behave when the data is incomplete, a tool fails, or an answer needs evidence.</p>
+        <p>My current focus is agent reliability: grounding answers, evaluating tool use, and understanding failure recovery. I’m developing public experiments and engineering notes around these questions.</p>
+        <p class="intro-links"><a href="#work">Explore my focus</a><span aria-hidden="true">↗</span> <a href="mailto:epraneeth3@gmail.com">Get in touch</a></p>
 
-        <section id="about"><h2>Experience</h2><ul><li><a href="https://www.linkedin.com/in/praneethe" target="_blank" rel="noreferrer">AI Engineering Intern — production RAG systems</a></li></ul></section>
-        <section><h2>Projects</h2><ul><li><a href="https://github.com/epraneeth" target="_blank" rel="noreferrer">Agent systems <em>(in progress)</em></a></li><li><a href="https://github.com/epraneeth" target="_blank" rel="noreferrer">Mobile agents <em>(exploring)</em></a></li></ul></section>
-        <section id="notes"><h2>Notes</h2><p>Writing coming soon.</p></section>
+        <section id="work" aria-labelledby="work-heading">
+          <h2 id="work-heading">What I’m working toward</h2>
+          <p class="section-intro">Research directions. Implementations and measured results will be linked here as they become available.</p>
+          <div class="work-item">
+            <h3>Reliable tool-using agents <span class="status">Planning</span></h3>
+            <p>How much do retries, clearer tool contracts, and state checks improve task completion? I want to compare a simple baseline with small changes, using repeatable tasks and inspectable traces.</p>
+            <a href="notes/evaluating-agents.html">Read the evaluation design</a>
+          </div>
+          <div class="work-item">
+            <h3>Grounded retrieval <span class="status">Research direction</span></h3>
+            <p>When should a system answer, cite evidence, or abstain? I’m interested in separating retrieval failures from unsupported generation, and making those failures easy to inspect.</p>
+          </div>
+        </section>
+
+        <section id="notes" aria-labelledby="notes-heading">
+          <h2 id="notes-heading">Engineering notes</h2>
+          <div class="note-item">
+            <p class="note-meta"><time datetime="2026-10-02">2 October 2026</time> · Design note</p>
+            <h3><a href="notes/evaluating-agents.html">What I want to measure in a tool-using agent</a></h3>
+            <p>Task outcomes, recovery, cost, and the limits of a convincing demo. A protocol for future experiments.</p>
+          </div>
+        </section>
+
+        <section id="about" aria-labelledby="about-heading">
+          <h2 id="about-heading">Experience &amp; interests</h2>
+          <p><strong>AI engineering intern</strong> — experience working on production RAG systems. <a href="https://www.linkedin.com/in/praneethe" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>.</p>
+          <p>I’m interested in applied AI and ML engineering roles involving retrieval, agents, and evaluation. I’m also studying the model fundamentals behind these systems, including training and inference.</p>
+          <p>If you’re working on a related problem, I’d like to hear about it: <a href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a>.</p>
+        </section>
       </article>
-      <footer><a href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a></footer>
+      <footer>
+        <p>Praneeth Earlagadda</p>
+        <div class="footer-links">
+          <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://x.com/praneeth_earl" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+          <a href="https://www.linkedin.com/in/praneethe" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:epraneeth3@gmail.com">Email</a>
+        </div>
+      </footer>
     </main>
-    <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="An evaluation design for tool-using agents: task outcomes, failure recovery, repeated trials, and cost. A design note by Praneeth Earlagadda." />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="What I want to measure in a tool-using agent" />
+    <meta property="og:description" content="A design for repeatable agent experiments, grounded in task outcomes and inspectable traces." />
+    <meta property="og:url" content="https://epraneeth.github.io/notes/evaluating-agents.html" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@praneeth_earl" />
+    <title>Evaluating tool-using agents · Praneeth Earlagadda</title>
+    <link rel="canonical" href="https://epraneeth.github.io/notes/evaluating-agents.html" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      try { const theme = localStorage.getItem('theme'); if (theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark'; } catch (_) { if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark'; }
+    </script>
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#note">Skip to content</a>
+    <main>
+      <nav aria-label="Main navigation">
+        <a href="../index.html">Praneeth</a>
+        <a href="../index.html#work">work</a>
+        <a href="../index.html#notes">notes</a>
+        <a href="../index.html#about">about</a>
+        <button id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" hidden>dark</button>
+      </nav>
+      <article id="note" class="prose">
+        <p class="note-meta"><time datetime="2026-10-02">2 October 2026</time> · Evaluation design</p>
+        <h1>What I want to measure in a tool-using agent</h1>
+        <p class="callout">This is a protocol for future experiments. No benchmark results are reported here. Drafted with AI assistance.</p>
+        <p>A successful demonstration tells me that an agent can complete a task once. I want to know whether it completes the task reliably, what happens when a tool fails, and how much the successful outcome costs.</p>
+        <h2>Start with an observable outcome</h2>
+        <p>My starting point is a small, versioned set of retrieval and tool-use tasks. Each task should specify the input, available tools, initial state, and an independently checkable success condition.</p>
+        <p>For a grounded answer, I would check the cited evidence as well as the answer. For a state-changing workflow in a sandbox, I would inspect the final state. A statement that an action succeeded is not enough to establish that it happened.</p>
+        <h2>Compare small changes</h2>
+        <p>I plan to compare a simple agent loop with controlled changes: clearer tool descriptions, bounded retries, and explicit state checks. The model, task set, resource budget, and measurement conditions should stay fixed within each comparison.</p>
+        <p>Failure cases should include unavailable tools, malformed responses, missing evidence, and attempts to redirect the agent through retrieved content. Each failure needs a label and a trace, so an aggregate score does not hide the underlying behaviour.</p>
+        <h2>Keep the measurement honest</h2>
+        <ul>
+          <li><strong>Completion:</strong> verified task outcomes, including abstention when the task cannot be completed correctly.</li>
+          <li><strong>Recovery:</strong> outcomes on tasks with injected failures, reported separately from normal tasks.</li>
+          <li><strong>Resources:</strong> latency, tool calls, token use, and cost per attempted and successful task.</li>
+          <li><strong>Variation:</strong> repeated trials and uncertainty estimates, with failures included in the denominator.</li>
+          <li><strong>Grounding:</strong> citation presence and evidence matching, followed by a separate check that the evidence actually supports the claim.</li>
+        </ul>
+        <p>I would separate development tasks from a held-out evaluation set. If a case has ambiguous success criteria, I would repair the task specification before treating its score as a signal about the agent.</p>
+        <h2>What I want to publish</h2>
+        <p>A useful result should come with the exact configuration, task-set version, run commands, raw trial records, and a short account of the failures. A negative result is useful too: if an extra retry increases cost without improving completion, that is worth reporting.</p>
+        <p>This design draws on <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic’s guide to agent evaluations</a>, particularly its distinction between transcripts and outcomes and its discussion of deterministic, model-based, and human grading.</p>
+        <p><a href="../index.html#work">← Back to my current focus</a></p>
+      </article>
+      <footer><a href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a> · <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub</a></footer>
+    </main>
+  </body>
+</html>
