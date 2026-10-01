@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Praneeth Earlagadda's fashion retrieval prototype: FashionCLIP embeddings, FAISS search, and the next evaluation questions." />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Fashion visual search · Praneeth Earlagadda" />
+    <meta property="og:description" content="A public retrieval prototype, its architecture, and a plan for product-level evaluation." />
+    <meta property="og:url" content="https://epraneeth.github.io/work/fashion-search.html" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@praneeth_earl" />
+    <title>Fashion visual search · Praneeth Earlagadda</title>
+    <link rel="canonical" href="https://epraneeth.github.io/work/fashion-search.html" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      try { const theme = localStorage.getItem('theme'); if (theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark'; } catch (_) { if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark'; }
+    </script>
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#project">Skip to content</a>
+    <main>
+      <nav aria-label="Main navigation">
+        <a href="../index.html">Praneeth</a><a href="../index.html#work">work</a><a href="../index.html#notes">notes</a><a href="../index.html#about">about</a>
+        <button id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" hidden>dark</button>
+      </nav>
+      <article id="project" class="prose">
+        <p class="eyebrow">Retrieval · public prototype</p>
+        <h1>Fashion visual search</h1>
+        <p>A prototype for finding visually similar products from an uploaded image, with recommendations based on search history and recent product launches.</p>
+        <p><a href="https://github.com/scode550/fashion-visual-search" target="_blank" rel="noopener noreferrer">Explore the source</a></p>
+        <p class="callout">This page describes the public implementation. No measured retrieval-quality, latency, or user-study results are reported here. A clean-checkout runtime demonstration remains to be verified.</p>
+        <h2>How the pipeline works</h2>
+        <ol>
+          <li>FashionCLIP produces an embedding for each catalog image and the query image.</li>
+          <li>A FAISS L2 index retrieves image neighbors, mapped back to product metadata.</li>
+          <li>A Streamlit interface displays results. TF-IDF similarity on descriptions provides a history-based recommendation heuristic.</li>
+          <li>A separate filter selects recent products with matching brand or description terms. This is recent-launch filtering, without measured popularity data.</li>
+        </ol>
+        <h2>Decisions to evaluate</h2>
+        <p>The current implementation uses raw image features and L2 distance. I want to compare that choice with normalized embeddings on a fixed set of labeled queries, while checking product duplicates and invalid neighbors.</p>
+        <p>Product-level relevance matters more than returning several images of the same item. A useful experiment needs a versioned catalog, a held-out query set, defined relevance labels, and a stable baseline.</p>
+        <h2>Next evidence</h2>
+        <ul>
+          <li>A clean setup with documented model/data provenance and a small fixture.</li>
+          <li>Tests for empty indexes, invalid neighbors, and duplicate products.</li>
+          <li>Recall@k or ranked-relevance metrics with raw results, latency, and failed queries.</li>
+        </ul>
+        <p class="note-meta">Updated 2 October 2026 · AI-assisted write-up based on the linked public source. FashionCLIP is a pretrained model; the application is not a claim of original model training.</p>
+        <p><a href="../index.html#work">← Back to selected work</a></p>
+      </article>
+      <footer><a href="mailto:epraneeth3@gmail.com">Email</a> · <a href="https://github.com/scode550" target="_blank" rel="noopener noreferrer">Project code</a></footer>
+    </main>
+  </body>
+</html>
