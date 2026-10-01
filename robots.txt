@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://epraneeth.github.io/sitemap.xml
