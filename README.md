@@ -1,27 +1,13 @@
-# Praneeth's portfolio
+# Praneeth Earlagadda's portfolio
 
-Static HTML, CSS, and JavaScript for <https://epraneeth.github.io/>. No build step or third-party runtime dependencies.
+Static HTML/CSS, hosted on GitHub Pages. No build step, analytics or third-party script dependencies. The homepage leads with current AI engineering experience and clearly separates planned experiments from local prototypes. Hazon and certifications appear in a compact background section. Personal schedules and application materials live outside this public repository.
 
-## Preview locally
+Run a static server from this directory to preview. The site uses relative URLs and semantic HTML. Check the homepage, evaluation note, anchor navigation and responsive layout before publishing.
 
-From the repository root:
+Content constraints confirmed by the owner:
 
-```sh
-python -m http.server 8765 --bind 127.0.0.1
-```
-
-Open <http://127.0.0.1:8765/>. Check the homepage, both project pages, the engineering note, navigation and theme toggle at desktop and mobile widths.
-
-## Update content
-
-- `index.html`: introduction, existing projects, research directions, internship/academic experience and contact links to both GitHub accounts.
-- `work/fashion-search.html` and `work/role-conditioned-rag.html`: source-linked prototype descriptions and evaluation questions. No empirical performance results claimed.
-- `notes/evaluating-agents.html`: an initial evaluation design note, not experimental results.
-- `styles.css` and `script.js`: shared styles and accessible theme control. A stored choice wins over the operating system preference; unavailable storage does not break the toggle.
-- `sitemap.xml`: add a URL when publishing a new note or project page.
-
-Keep project labels accurate. Change a planning label only when there is an implementation to link. A result needs a dataset, method, measurement conditions, and reproducible code. Review AI-assisted draft copy before publishing it as your personal position. Do not include private work or employer information without publication rights.
-
-## GitHub Pages
-
-This repository already exists. In **Settings → Pages**, verify the configured publishing source. For branch deployment, use `main` and `/ (root)`. A change on a feature branch or in a pull request is not a production deployment; merge the reviewed change into the configured publishing source to release it.
+- Display AI Solutions Engineer at BharatPe, with accurate internship context; do not show dates on the website without asking first.
+- Hazon is a completed M.Tech project. The owner confirms being named on a granted patent; add a public patent link only after receiving its exact record. No current association or award claim is implied.
+- Certificate names/providers come from the supplied résumé; dates are omitted as requested. Do not invent credential links.
+- Old fashion/RAG showcases have been removed. Their repositories and Git history remain intact. Fresh projects need working code and evidence before being called completed or deployed.
+- Do not claim local MCP tests establish an actual ChatGPT connection, Codex installation, or model performance.
