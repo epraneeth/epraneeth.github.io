@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Praneeth Earlagadda — AI engineering intern working on retrieval and agent workflows. Public retrieval prototypes, graduate vision research, and engineering notes." />
-    <meta name="color-scheme" content="light dark" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Praneeth Earlagadda — AI Solutions Engineer at BharatPe. Retrieval pipelines, AI chatbots, and new experiments in agent reliability." />
+    <meta name="color-scheme" content="light" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Praneeth Earlagadda · AI engineering" />
-    <meta property="og:description" content="Reliable language-model systems: retrieval, grounding, and agent evaluation." />
+    <meta property="og:description" content="Building AI systems. Learning in public. Retrieval, agents, and reproducible experiments." />
     <meta property="og:url" content="https://epraneeth.github.io/" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@praneeth_earl" />
@@ -15,76 +15,72 @@
     <link rel="canonical" href="https://epraneeth.github.io/" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
-    <script>
-      try { const theme = localStorage.getItem('theme'); if (theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark'; } catch (_) { if (matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'dark'; }
-    </script>
-    <script src="script.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#top">Skip to content</a>
-    <main>
-      <nav aria-label="Main navigation">
-        <a href="#top">Praneeth</a>
-        <a href="#work">work</a>
-        <a href="#notes">notes</a>
-        <a href="#about">about</a>
-        <button id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" hidden>dark</button>
-      </nav>
-      <article id="top">
-        <p class="eyebrow">AI engineering · retrieval &amp; agents</p>
-        <h1>Hi, I’m Praneeth.</h1>
-        <p>I’m an AI engineering intern working on enterprise retrieval-augmented generation (RAG) and agent workflows. My graduate research explored computer vision and edge inference.</p>
-        <p>I care about what happens when evidence is incomplete or a tool fails. I’m developing public work around retrieval quality, grounded answers, and reliable tool use.</p>
-        <p class="intro-links"><a href="#work">Explore my work</a><span aria-hidden="true">↗</span> <a href="mailto:epraneeth3@gmail.com">Get in touch</a></p>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="#main">Praneeth Earlagadda</a>
+        <nav aria-label="Main navigation">
+          <a href="#work">Work</a>
+          <a href="#credentials">Credentials</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+      <main id="main">
+        <section class="hero" aria-labelledby="hero-title">
+          <h1 id="hero-title">Building AI systems.<br />Learning in public.</h1>
+          <p class="hero-description">AI engineering intern with experience in retrieval pipelines and chatbots.<br class="desktop-break" /> I’m building deeper skills in models, evaluation and systems.</p>
+          <div class="hero-actions">
+            <a class="button" href="#work">Explore my work</a>
+            <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+          <div class="section-preview"><span>Selected work</span><span>Current work &amp; next experiments</span></div>
+        </section>
 
-        <section id="work" aria-labelledby="work-heading">
-          <h2 id="work-heading">Selected work</h2>
-          <p class="section-intro">Public implementations and the questions I’m investigating next. Prototype status and measurement limits are described on each project page.</p>
-          <div class="work-item">
-            <h3>Fashion visual search <span class="status">Prototype · public source</span></h3>
-            <p>Image retrieval with FashionCLIP embeddings and FAISS, a Streamlit interface, history-based recommendations, and recent-launch filtering. Next: reproducible setup and product-level evaluation.</p>
-            <a href="work/fashion-search.html">Architecture &amp; next experiments</a>
+        <section class="practice section" id="work" aria-labelledby="work-title">
+          <h2 id="work-title">Engineering in practice.</h2>
+          <div class="experience">
+            <div><h3>AI Solutions Engineer</h3><p class="employer">BharatPe</p><p class="muted">Internship</p></div>
+            <p class="experience-description">Working on retrieval pipelines and AI chatbots. My next focus is making agent behavior easier to measure and explain.</p>
           </div>
-          <div class="work-item">
-            <h3>Role-conditioned RAG <span class="status">Prototype · public source</span></h3>
-            <p>A local document-answering pipeline with BGE embeddings, Chroma retrieval, query rewriting, cross-encoder reranking, and FastAPI. Next: measure retrieval quality and evidence support separately.</p>
-            <a href="work/role-conditioned-rag.html">Pipeline &amp; evaluation questions</a>
-          </div>
-          <div class="work-item">
-            <h3>Reliable tool-using agents <span class="status">Planning</span></h3>
-            <p>How much do retries, clearer tool contracts, and state checks improve task completion? I want to compare a simple baseline with small changes, using repeatable tasks and inspectable traces.</p>
-            <a href="notes/evaluating-agents.html">Read the evaluation design</a>
+          <div class="next-work">
+            <h3>What I’m building next</h3>
+            <p>A fresh portfolio of reproducible AI experiments, a ChatGPT app, and a Codex plugin.</p>
+            <ol class="project-list">
+              <li><span class="project-number" aria-hidden="true">01</span><a href="notes/evaluating-agents.html">Agent reliability lab</a><span class="project-status">Planned</span></li>
+              <li><span class="project-number" aria-hidden="true">02</span><span class="project-name">Grounding Desk &amp; Eval Review</span><span class="project-status">Local prototypes</span></li>
+            </ol>
           </div>
         </section>
 
-        <section id="notes" aria-labelledby="notes-heading">
-          <h2 id="notes-heading">Engineering notes</h2>
-          <div class="note-item">
-            <p class="note-meta"><time datetime="2026-10-02">2 October 2026</time> · Design note</p>
-            <h3><a href="notes/evaluating-agents.html">What I want to measure in a tool-using agent</a></h3>
-            <p>Task outcomes, recovery, cost, and the limits of a convincing demo. A protocol for future experiments.</p>
+        <section class="background section" id="credentials" aria-labelledby="credentials-title">
+          <h2 id="credentials-title">Earlier work &amp; credentials</h2>
+          <div class="background-columns">
+            <div class="hazon">
+              <h3>Hazon Vision Glasses</h3>
+              <p class="muted">Completed M.Tech project</p>
+              <p>Owned hardware selection, physical design coordination, pipeline experiments, integrations, and the final demo.</p>
+              <p class="patent">Named on a granted patent.</p>
+            </div>
+            <ul class="credentials-list" aria-label="Certifications">
+              <li><h3>Deep Learning</h3><p>Kaggle</p></li>
+              <li><h3>Computer Vision</h3><p>Kaggle</p></li>
+              <li><h3>API Fundamentals: Student Expert</h3><p>Postman</p></li>
+            </ul>
           </div>
         </section>
 
-        <section id="about" aria-labelledby="about-heading">
-          <h2 id="about-heading">Experience &amp; interests</h2>
-          <p><strong>Industry internship:</strong> enterprise RAG and agent workflows, with Python/FastAPI backend and full-stack AI application work.</p>
-          <p><strong>Graduate research:</strong> computer vision and edge inference, including assistive-vision experiments. I’m preparing a case study of the implementation and its limits.</p>
-          <p>My public project code is on <a href="https://github.com/scode550" target="_blank" rel="noopener noreferrer">scode550</a>; this website is maintained on <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">epraneeth</a>. <a href="https://www.linkedin.com/in/praneethe" target="_blank" rel="noopener noreferrer">LinkedIn profile</a>.</p>
-          <p>I’m interested in applied AI and ML engineering roles involving retrieval, agents, and evaluation. I’m also studying the model fundamentals behind these systems, including training and inference.</p>
-          <p>If you’re working on a related problem, I’d like to hear about it: <a href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a>.</p>
+        <section class="contact" id="contact" aria-labelledby="contact-title">
+          <h2 id="contact-title">Let’s build something useful.</h2>
+          <a class="email" href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a>
+          <div class="contact-links">
+            <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7" /></svg></a>
+            <a href="https://x.com/praneeth_earl" target="_blank" rel="noopener noreferrer">X / Twitter <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7" /></svg></a>
+          </div>
         </section>
-      </article>
-      <footer>
-        <p>Praneeth Earlagadda</p>
-        <div class="footer-links">
-          <a href="https://github.com/scode550" target="_blank" rel="noopener noreferrer">Project code</a>
-          <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">Website source</a>
-          <a href="https://x.com/praneeth_earl" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-          <a href="https://www.linkedin.com/in/praneethe" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:epraneeth3@gmail.com">Email</a>
-        </div>
-      </footer>
-    </main>
+      </main>
+      <footer class="site-footer"><span>Praneeth Earlagadda</span><span>Hyderabad, India</span></footer>
+    </div>
   </body>
 </html>
