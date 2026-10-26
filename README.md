@@ -6,7 +6,7 @@ Run a static server from this directory to preview, for example `python -m http.
 
 Dark is the initial theme. The light/dark text button saves a preference locally and shares it between the homepage and note. If scripts or local storage are unavailable, all content and navigation still work.
 
-The scene drifts at about 15 frames/second while visible. A cached background lets a triggered plane fly at a higher cadence without redrawing the ribbons each frame. Pause/resume is explicit and saved locally. Rendering stops when offscreen or the document is hidden; reduced-motion starts still, and sending a plane changes the static composition. There are no required pointer gestures, and the canvas is exposed as a single described image. Small screens use fewer character cells rather than scaling a dense desktop bitmap down.
+The character ribbons drift at about 15 frames/second while visible. The plane continuously follows an arc-length-sampled figure-eight, with smooth U-turns, occasional inward loops, and a “do a loop” control. Its display-rate movement reuses the cached ribbon layer. Pause/resume is explicit and saved locally. Rendering stops when offscreen or the document is hidden; reduced-motion starts still, and the loop button changes the static composition. There are no required pointer gestures, and the canvas is exposed as a single described image. Small screens use fewer character cells rather than scaling a dense desktop bitmap down.
 
 Content constraints confirmed by the owner:
 

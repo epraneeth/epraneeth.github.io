@@ -28,7 +28,7 @@ button { font: inherit; }
 h1, h2, p, ul, pre { margin: 0; }
 h1, h2 { font-weight: 400; letter-spacing: .015em; line-height: 1.35; }
 h1 { font-size: 32px; }
-h2 { font-size: 14px; color: var(--link); margin-bottom: 14px; letter-spacing: .025em; }
+h2 { font-size: 18px; font-weight: 500; color: var(--link); margin-bottom: 14px; letter-spacing: .015em; }
 p + p { margin-top: 16px; }
 [hidden] { display: none !important; }
 .page { width: min(calc(100% - 48px), 704px); margin: 0 auto; }
@@ -56,8 +56,7 @@ nav a[aria-current], nav a:hover { color: var(--link); text-decoration: underlin
 .control-separator { color: var(--muted); }
 .scene.is-still .control-separator { display: none; }
 .intro { margin-bottom: 48px; }
-.location { color: var(--link); margin-top: 8px; }
-.intro > .location + p { margin-top: 24px; }
+.intro > h1 + p { margin-top: 24px; }
 .social-links { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; padding: 8px 0 0; }
 .social-links li { display: flex; align-items: center; gap: 16px; }
 .social-links li + li::before { content: "/"; color: var(--muted); }
@@ -97,13 +96,12 @@ main:focus { outline: none; }
   .page { width: calc(100% - 40px); }
   body { font-size: 14px; line-height: 1.7; }
   h1 { font-size: clamp(23px, 5.6vw, 30px); letter-spacing: -.025em; }
-  h2 { font-size: 13px; }
+  h2 { font-size: 16px; }
   .site-header { min-height: 60px; }
   .scene { margin: 10px 0 28px; }
   .scene-picture { height: 182px; }
   .scene-controls { font-size: 11px; }
   .intro { margin-bottom: 36px; }
-  .location { font-size: 13px; }
   main > section + section { margin-top: 32px; }
   .workbench li + li { margin-top: 14px; }
   .prose { padding-top: 32px; }

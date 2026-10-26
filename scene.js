@@ -15,9 +15,10 @@
   const tau = Math.PI * 2;
   const glyphs = '...::+*';
   let width = 0, height = 0, columns = 0, rows = 0, cellX = 0, cellY = 0;
-  let texture, colors, phase = .18, flight = null, resting = 0;
+  let texture, colors, phase = .18, course = .04, route = [], routeLength = 1;
+  let loop = null, loopQueued = false, nextLoop = 7500, trail = [];
   let cachedPhase = -Infinity;
-  let timer = 0, frame = 0, last = 0, visible = true, paused = false;
+  let frame = 0, last = 0, visible = true, paused = false;
   try { paused = localStorage.getItem('praneeth-motion') === 'paused'; } catch {}
 
   const noise = (x, y, salt = 0) => {
@@ -32,47 +33,95 @@
   }
 
   function stop() {
-    clearTimeout(timer);
     cancelAnimationFrame(frame);
-    timer = frame = 0;
+    frame = 0;
     last = 0;
   }
 
   function playing() { return !paused && !reduced.matches && visible && !document.hidden; }
 
-  function flightPoint(t) {
+  function curve(angle) {
+    return { x: width * (.5 + .4 * Math.sin(angle)), y: height * (.48 + .25 * Math.sin(angle * 2)) };
+  }
+
+  function buildRoute() {
+    // Arc-length sampling gives the long sweeps and tight U-turns the same
+    // travelling speed. The curve closes with a matching position/tangent.
+    route = [0];
+    let previous = curve(-.9);
+    for (let i = 1; i <= 720; i++) {
+      const point = curve(-.9 + tau * i / 720);
+      route.push(route[i - 1] + Math.hypot(point.x - previous.x, point.y - previous.y));
+      previous = point;
+    }
+    routeLength = route[720];
+  }
+
+  function cruisePose() {
+    const distance = course * routeLength;
+    let low = 0, high = 720;
+    while (high - low > 1) {
+      const middle = (low + high) >> 1;
+      if (route[middle] <= distance) low = middle;
+      else high = middle;
+    }
+    const fraction = (distance - route[low]) / Math.max(.001, route[high] - route[low]);
+    const angle = -.9 + tau * (low + fraction) / 720;
+    return { ...curve(angle), angle: Math.atan2(height * .5 * Math.cos(angle * 2), width * .4 * Math.cos(angle)), bank: .88 + .12 * Math.sin(angle) };
+  }
+
+  function loopPose(turn, progress) {
+    const tangentX = Math.cos(turn.angle), tangentY = Math.sin(turn.angle);
+    const along = turn.radius * Math.sin(progress);
+    const across = turn.radius * (1 - Math.cos(progress)) * turn.direction;
     return {
-      x: width * (-.06 + 1.10 * t),
-      y: height * (.73 - .59 * t + .20 * Math.sin(t * tau) * Math.sin(t * Math.PI))
+      x: turn.x + tangentX * along - tangentY * across,
+      y: turn.y + tangentY * along + tangentX * across,
+      angle: turn.angle + progress * turn.direction,
+      bank: .72 + .28 * Math.cos(progress)
     };
   }
 
-  function drawPlane() {
-    let point, angle;
-    if (flight !== null) {
-      const t = flight / 6400;
-      point = flightPoint(t);
-      const ahead = flightPoint(t + .002);
-      angle = Math.atan2(ahead.y - point.y, ahead.x - point.x);
-      ctx.fillStyle = colors.accent;
-      ctx.font = '10px Consolas, monospace';
-      for (let i = 1; i <= 24; i++) {
-        const tt = t - i * .008;
-        if (tt < 0) continue;
-        const tail = flightPoint(tt);
-        ctx.globalAlpha = .5 * (1 - i / 25);
-        ctx.fillText('.', tail.x, tail.y);
+  function beginLoop() {
+    if (loop) { loopQueued = true; return; }
+    const start = cruisePose();
+    let best = null;
+    // Choose the inward side and radius that fit the artwork, including on
+    // a phone; a stunt must never take the plane into the text or controls.
+    for (let attempt = 0; attempt < 5 && !best; attempt++) {
+      const radius = Math.min(width * .055, height * .14, 38) * .8 ** attempt;
+      for (const direction of [1, -1]) {
+        const turn = { ...start, radius, direction, travelled: 0 };
+        let fits = true;
+        for (let i = 0; i <= 32; i++) {
+          const point = loopPose(turn, tau * i / 32);
+          if (point.x < 16 || point.x > width - 16 || point.y < 16 || point.y > height - 16) { fits = false; break; }
+        }
+        if (fits) { best = turn; break; }
       }
-    } else {
-      point = { x: width * (.94 - (resting % 3) * .075), y: height * (.13 + (resting % 3) * .07) };
-      angle = -.45;
+    }
+    loop = best;
+    canvas.dataset.flight = loop ? 'looping' : 'flying';
+  }
+
+  function planePose() { return loop ? loopPose(loop, loop.travelled / loop.radius) : cruisePose(); }
+
+  function drawPlane() {
+    const point = planePose();
+    ctx.fillStyle = colors.accent;
+    ctx.font = '10px Consolas, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (let i = 0; i < trail.length; i++) {
+      ctx.globalAlpha = .45 * (1 - trail[i].age / 1400);
+      ctx.fillText('.', trail[i].x, trail[i].y);
     }
     const scale = width < 500 ? .8 : 1;
     ctx.save();
     ctx.globalAlpha = .95;
     ctx.translate(point.x, point.y);
-    ctx.rotate(angle);
-    ctx.scale(scale, scale);
+    ctx.rotate(point.angle);
+    ctx.scale(scale, scale * point.bank);
     ctx.strokeStyle = colors.ink;
     ctx.lineWidth = 1;
     ctx.lineJoin = 'round';
@@ -145,19 +194,30 @@
   function tick(now) {
     frame = 0;
     if (!playing()) return;
+    if (last && now - last < 15) { frame = requestAnimationFrame(tick); return; }
     const delta = last ? Math.min(now - last, 120) : 0;
     last = now;
     phase += delta * .00015;
-    if (flight !== null) {
-      flight += delta;
-      if (flight >= 6400) {
-        flight = null;
-        canvas.dataset.flight = 'resting';
+    const speed = width < 500 ? width * .19 : width * .105;
+    if (loop) {
+      loop.travelled += speed * delta / 1000;
+      if (loop.travelled >= tau * loop.radius) {
+        loop = null;
+        nextLoop = 16000;
+        canvas.dataset.flight = 'flying';
+        if (loopQueued) { loopQueued = false; beginLoop(); }
       }
+    } else {
+      course = (course + speed * delta / 1000 / routeLength) % 1;
+      nextLoop -= delta;
+      if (nextLoop <= 0) beginLoop();
     }
+    for (const dot of trail) dot.age += delta;
+    trail = trail.filter(dot => dot.age < 1400);
+    const point = planePose(), newest = trail[trail.length - 1];
+    if (!newest || Math.hypot(point.x - newest.x, point.y - newest.y) > 5) trail.push({ x: point.x, y: point.y, age: 0 });
     draw();
-    if (flight !== null) frame = requestAnimationFrame(tick);
-    else timer = setTimeout(() => { frame = requestAnimationFrame(tick); }, 1000 / 15);
+    frame = requestAnimationFrame(tick);
   }
 
   function update() {
@@ -165,10 +225,7 @@
     pauseButton.textContent = paused ? 'resume' : 'pause';
     pauseButton.hidden = reduced.matches;
     scene.classList.toggle('is-still', reduced.matches);
-    if (reduced.matches && flight !== null) {
-      flight = null;
-      canvas.dataset.flight = 'resting';
-    }
+    canvas.dataset.flight = reduced.matches ? 'still' : paused ? 'paused' : loop ? 'looping' : 'flying';
     draw(true);
     if (playing()) frame = requestAnimationFrame(tick);
   }
@@ -176,8 +233,17 @@
   function resize() {
     stop();
     const bounds = canvas.getBoundingClientRect();
+    const scaleX = width ? bounds.width / width : 1, scaleY = height ? bounds.height / height : 1;
     width = bounds.width;
     height = bounds.height;
+    for (const dot of trail) { dot.x *= scaleX; dot.y *= scaleY; }
+    if (loop) {
+      loop.x *= scaleX; loop.y *= scaleY;
+      loop.angle = Math.atan2(Math.sin(loop.angle) * scaleY, Math.cos(loop.angle) * scaleX);
+      loop.radius *= Math.min(scaleX, scaleY);
+      loop.travelled *= Math.min(scaleX, scaleY);
+    }
+    buildRoute();
     const ratio = Math.min(devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
@@ -200,17 +266,14 @@
     update();
   });
   planeButton.addEventListener('click', () => {
-    resting++;
     if (reduced.matches || paused) {
       phase += .4;
-      flight = null;
-      canvas.dataset.flight = 'resting';
+      course = (course + .16) % 1;
+      loop = null;
+      loopQueued = false;
+      trail = [];
       draw();
-    } else {
-      flight = 0;
-      canvas.dataset.flight = 'flying';
-      update();
-    }
+    } else beginLoop();
   });
   root.addEventListener('themechange', () => { palette(); draw(); });
   document.addEventListener('visibilitychange', update);
