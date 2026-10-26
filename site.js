@@ -17,5 +17,6 @@
     root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
     try { localStorage.setItem('praneeth-theme', root.dataset.theme); } catch {}
     sync();
+    root.dispatchEvent(new Event('themechange'));
   });
 })();

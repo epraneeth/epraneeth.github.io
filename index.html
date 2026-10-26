@@ -16,8 +16,9 @@
     <link rel="canonical" href="https://epraneeth.github.io/" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <script>try{const t=localStorage.getItem('praneeth-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
-    <link rel="stylesheet" href="styles.css?v=personal-1" />
-    <script src="site.js?v=personal-1" defer></script>
+    <link rel="stylesheet" href="styles.css?v=personal-2" />
+    <script src="site.js?v=personal-2" defer></script>
+    <script src="scene.js?v=personal-2" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -27,17 +28,20 @@
         <button class="theme-toggle" type="button" hidden aria-label="Switch to light theme">light</button>
       </header>
       <main id="main" tabindex="-1">
-        <div class="flight" aria-hidden="true">
-          <svg class="flight-path" viewBox="0 0 704 156" fill="none">
-            <path d="M28 100C105-4 200 148 292 97C336 74 288 25 275 65C254 130 426 151 589 57" />
-            <circle cx="44" cy="81" r="2.5"/><path class="star" d="M95 126v8m-4-4h8M521 40v8m-4-4h8M488 125v6m-3-3h6" />
+        <figure class="scene">
+          <div class="scene-picture">
+          <canvas id="ambient-art" role="img" aria-label="Two flowing ribbons of sage and amber characters, with a little paper plane drifting through them." data-flight="resting"></canvas>
+          <svg class="scene-fallback" viewBox="0 0 960 280" fill="none" aria-hidden="true">
+            <path d="M8 50C230-20 205 270 475 155S700 60 952 230M8 72C230 2 205 292 475 177S700 82 952 252M8 95C230 25 205 315 475 200S700 105 952 275" />
+            <path class="fallback-amber" d="M8 180C200 330 360 70 580 80S780 300 952 200M8 158C200 308 360 48 580 58S780 278 952 178M8 135C200 285 360 25 580 35S780 255 952 155" />
           </svg>
-          <pre class="paper-plane">        /|
-   ____/ |
-   \  /  |
-    \/___|
-    /</pre>
-        </div>
+          </div>
+          <div class="scene-controls" hidden>
+            <button id="send-plane" type="button">send a plane <span aria-hidden="true">↗</span></button>
+            <span class="control-separator" aria-hidden="true">/</span>
+            <button id="pause-art" type="button">pause</button>
+          </div>
+        </figure>
         <section class="intro" aria-labelledby="hello">
           <h1 id="hello">hi, I’m Praneeth.</h1>
           <p class="location">An AI engineer in Hyderabad, India.</p>
@@ -60,7 +64,7 @@
         </section>
         <section id="notes" aria-labelledby="notes-title">
           <h2 id="notes-title">a note to start with</h2>
-          <p><a href="notes/evaluating-agents.html">What I want to measure in a tool-using agent <span aria-hidden="true">↗</span></a><br /><span class="small muted">(an experiment plan, not results)</span></p>
+          <p><a href="notes/evaluating-agents.html">What I want to measure in a tool-using <span class="no-wrap">agent <span aria-hidden="true">↗</span></span></a><br /><span class="small muted">(an experiment plan, not results)</span></p>
         </section>
         <section id="credentials" aria-labelledby="earlier-title">
           <h2 id="earlier-title">before this</h2>
