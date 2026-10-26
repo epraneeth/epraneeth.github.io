@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="An evaluation design for tool-using agents: task outcomes, failure recovery, repeated trials, and cost. A design note by Praneeth Earlagadda." />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#191b1a" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="What I want to measure in a tool-using agent" />
     <meta property="og:description" content="A design for repeatable agent experiments, grounded in task outcomes and inspectable traces." />
@@ -14,14 +15,20 @@
     <title>Evaluating tool-using agents · Praneeth Earlagadda</title>
     <link rel="canonical" href="https://epraneeth.github.io/notes/evaluating-agents.html" />
     <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles.css" />
+    <script>try{const t=localStorage.getItem('praneeth-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
+    <link rel="stylesheet" href="../styles.css?v=personal-1" />
+    <script src="../site.js?v=personal-1" defer></script>
 
   </head>
   <body>
     <a class="skip-link" href="#note">Skip to content</a>
-    <main class="prose-page">
-      <header class="site-header"><a class="brand" href="../index.html">Praneeth Earlagadda</a><nav aria-label="Main navigation"><a href="../index.html#work">Work</a><a href="../index.html#credentials">Credentials</a><a href="../index.html#contact">Contact</a></nav></header>
-      <article id="note" class="prose">
+    <div class="page">
+      <header class="site-header">
+        <nav aria-label="Main navigation"><a href="../index.html">home</a><span aria-hidden="true">/</span><a href="../index.html#notes">notes</a></nav>
+        <button class="theme-toggle" type="button" hidden aria-label="Switch to light theme">light</button>
+      </header>
+      <main id="note" class="prose" tabindex="-1">
+      <article>
         <h1>What I want to measure in a tool-using agent</h1>
         <p class="callout">This is a protocol for future experiments. No benchmark results are reported here. Drafted with AI assistance.</p>
         <p>A successful demonstration tells me that an agent can complete a task once. I want to know whether it completes the task reliably, what happens when a tool fails, and how much the successful outcome costs.</p>
@@ -43,9 +50,10 @@
         <h2>What I want to publish</h2>
         <p>A useful result should come with the exact configuration, task-set version, run commands, raw trial records, and a short account of the failures. A negative result is useful too: if an extra retry increases cost without improving completion, that is worth reporting.</p>
         <p>This design draws on <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer">Anthropic’s guide to agent evaluations</a>, particularly its distinction between transcripts and outcomes and its discussion of deterministic, model-based, and human grading.</p>
-        <p><a href="../index.html#work">← Back to my current focus</a></p>
+        <p class="note-back"><a href="../index.html#notes">← back home</a></p>
       </article>
-      <footer><a href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a> · <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub</a></footer>
-    </main>
+      </main>
+      <footer class="site-footer"><span>Praneeth Earlagadda</span><a href="mailto:epraneeth3@gmail.com">say hello</a></footer>
+    </div>
   </body>
 </html>
