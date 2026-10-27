@@ -1,1 +1,1 @@
-# Praneeth Earlagadda's portfoli
+# Praneeth Earlagadda's portfolio
