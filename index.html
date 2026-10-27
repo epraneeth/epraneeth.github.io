@@ -1,86 +1,84 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Praneeth Earlagadda — AI Solutions Engineer at BharatPe. Retrieval pipelines, AI chatbots, and new experiments in agent reliability." />
-    <meta name="color-scheme" content="light" />
+    <meta name="description" content="Praneeth Earlagadda — AI Solutions Engineer intern at BharatPe. Experiments, notes, and things I’m figuring out along the way." />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#191b1a" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Praneeth Earlagadda · AI engineering" />
-    <meta property="og:description" content="Building AI systems. Learning in public. Retrieval, agents, and reproducible experiments." />
+    <meta property="og:title" content="Praneeth Earlagadda" />
+    <meta property="og:description" content="AI engineering experiments, notes, and things I’m figuring out along the way." />
     <meta property="og:url" content="https://epraneeth.github.io/" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@praneeth_earl" />
-    <title>Praneeth Earlagadda · AI engineering</title>
+    <title>Praneeth Earlagadda</title>
     <link rel="canonical" href="https://epraneeth.github.io/" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
+    <script>try{const t=localStorage.getItem('praneeth-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch{}</script>
+    <link rel="stylesheet" href="styles.css?v=personal-3" />
+    <script src="site.js?v=personal-3" defer></script>
+    <script src="scene.js?v=personal-3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="page">
       <header class="site-header">
-        <a class="brand" href="#main">Praneeth Earlagadda</a>
-        <nav aria-label="Main navigation">
-          <a href="#work">Work</a>
-          <a href="#credentials">Credentials</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <nav aria-label="Main navigation"><a href="./" aria-current="page">home</a><span aria-hidden="true">/</span><a href="#notes">notes</a></nav>
+        <button class="theme-toggle" type="button" hidden aria-label="Switch to light theme">light</button>
       </header>
-      <main id="main">
-        <section class="hero" aria-labelledby="hero-title">
-          <h1 id="hero-title">Building AI systems.<br />Learning in public.</h1>
-          <p class="hero-description">AI engineering intern with experience in retrieval pipelines and chatbots.<br class="desktop-break" /> I’m building deeper skills in models, evaluation and systems.</p>
-          <div class="hero-actions">
-            <a class="button" href="#work">Explore my work</a>
-            <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <main id="main" tabindex="-1">
+        <figure class="scene">
+          <div class="scene-picture">
+          <canvas id="ambient-art" role="img" aria-label="Two flowing ribbons of sage and amber characters, with a paper plane tracing curves, U-turns and occasional loops." data-flight="still"></canvas>
+          <svg class="scene-fallback" viewBox="0 0 960 280" fill="none" aria-hidden="true">
+            <path d="M8 50C230-20 205 270 475 155S700 60 952 230M8 72C230 2 205 292 475 177S700 82 952 252M8 95C230 25 205 315 475 200S700 105 952 275" />
+            <path class="fallback-amber" d="M8 180C200 330 360 70 580 80S780 300 952 200M8 158C200 308 360 48 580 58S780 278 952 178M8 135C200 285 360 25 580 35S780 255 952 155" />
+          </svg>
           </div>
-          <div class="section-preview"><span>Selected work</span><span>Current work &amp; next experiments</span></div>
+          <div class="scene-controls" hidden>
+            <button id="send-plane" type="button">do a loop <span aria-hidden="true">↻</span></button>
+            <span class="control-separator" aria-hidden="true">/</span>
+            <button id="pause-art" type="button">pause</button>
+          </div>
+        </figure>
+        <section class="intro" aria-labelledby="hello">
+          <h1 id="hello">Hi, I’m Praneeth.</h1>
+          <p>I’m an AI Solutions Engineer intern at BharatPe, working on retrieval pipelines and chatbots.</p>
+          <p>I want to understand what makes AI systems work—and what happens when they don’t. This is where I’m collecting my experiments and notes along the way.</p>
+          <ul class="social-links" aria-label="Find me online">
+            <li><a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">github</a></li>
+            <li><a href="https://x.com/praneeth_earl" target="_blank" rel="noopener noreferrer">x</a></li>
+            <li><a href="mailto:epraneeth3@gmail.com">email</a></li>
+          </ul>
         </section>
-
-        <section class="practice section" id="work" aria-labelledby="work-title">
-          <h2 id="work-title">Engineering in practice.</h2>
-          <div class="experience">
-            <div><h3>AI Solutions Engineer</h3><p class="employer">BharatPe</p><p class="muted">Internship</p></div>
-            <p class="experience-description">Working on retrieval pipelines and AI chatbots. My next focus is making agent behavior easier to measure and explain.</p>
-          </div>
-          <div class="next-work">
-            <h3>What I’m building next</h3>
-            <p>A fresh portfolio of reproducible AI experiments, a ChatGPT app, and a Codex plugin.</p>
-            <ol class="project-list">
-              <li><span class="project-number" aria-hidden="true">01</span><a href="notes/evaluating-agents.html">Agent reliability lab</a><span class="project-status">Planned</span></li>
-              <li><span class="project-number" aria-hidden="true">02</span><span class="project-name">Grounding Desk &amp; Eval Review</span><span class="project-status">Local prototypes</span></li>
-            </ol>
-          </div>
+        <section id="work" aria-labelledby="work-title">
+          <h2 id="work-title">on my workbench</h2>
+          <ul class="workbench">
+            <li><a href="notes/evaluating-agents.html">agent reliability lab</a> — an early sandbox for studying tool failures and recovery.</li>
+            <li><span class="project-title">grounding desk</span> — a private ChatGPT app prototype for reviewing evidence.</li>
+            <li><span class="project-title">eval review</span> — a local Codex plugin for comparing evaluation runs.</li>
+          </ul>
+          <p class="small muted">Early prototypes built with AI assistance; further testing and independent work are ahead.</p>
         </section>
-
-        <section class="background section" id="credentials" aria-labelledby="credentials-title">
-          <h2 id="credentials-title">Earlier work &amp; credentials</h2>
-          <div class="background-columns">
-            <div class="hazon">
-              <h3>Hazon Vision Glasses</h3>
-              <p class="muted">Completed M.Tech project</p>
-              <p>Owned hardware selection, physical design coordination, pipeline experiments, integrations, and the final demo.</p>
-              <p class="patent">Named on a granted patent.</p>
-            </div>
-            <ul class="credentials-list" aria-label="Certifications">
-              <li><h3>Deep Learning</h3><p>Kaggle</p></li>
-              <li><h3>Computer Vision</h3><p>Kaggle</p></li>
-              <li><h3>API Fundamentals: Student Expert</h3><p>Postman</p></li>
+        <section id="notes" aria-labelledby="notes-title">
+          <h2 id="notes-title">a note to start with</h2>
+          <p><a href="notes/evaluating-agents.html">What I want to measure in a tool-using <span class="no-wrap">agent <span aria-hidden="true">↗</span></span></a><br /><span class="small muted">(an experiment plan, not results)</span></p>
+        </section>
+        <section id="credentials" aria-labelledby="earlier-title">
+          <h2 id="earlier-title">before this</h2>
+          <p>I built Hazon Vision Glasses for my M.Tech: hardware selection, design coordination, pipeline experiments, integration, and a demo. The project is finished; I’m named on a granted patent.</p>
+          <details class="certificates">
+            <summary>a few certificates <span class="disclosure-mark" aria-hidden="true">+</span></summary>
+            <ul>
+              <li>Deep Learning <span class="muted">· Kaggle</span></li>
+              <li>Computer Vision <span class="muted">· Kaggle</span></li>
+              <li>API Fundamentals: Student Expert <span class="muted">· Postman</span></li>
             </ul>
-          </div>
-        </section>
-
-        <section class="contact" id="contact" aria-labelledby="contact-title">
-          <h2 id="contact-title">Let’s build something useful.</h2>
-          <a class="email" href="mailto:epraneeth3@gmail.com">epraneeth3@gmail.com</a>
-          <div class="contact-links">
-            <a href="https://github.com/epraneeth" target="_blank" rel="noopener noreferrer">GitHub <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7" /></svg></a>
-            <a href="https://x.com/praneeth_earl" target="_blank" rel="noopener noreferrer">X / Twitter <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7" /></svg></a>
-          </div>
+          </details>
         </section>
       </main>
-      <footer class="site-footer"><span>Praneeth Earlagadda</span><span>Hyderabad, India</span></footer>
+      <footer class="site-footer"><span>Praneeth Earlagadda</span><span class="muted">a small place on the internet.</span></footer>
     </div>
   </body>
 </html>
